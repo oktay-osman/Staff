@@ -1,8 +1,9 @@
 package com.example.demo.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class EmployeeProjects {
+public class EmployeeProjects implements Serializable {
     private long employeeId;
     private long projectId;
     private LocalDate fromDate;
