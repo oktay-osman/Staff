@@ -3,13 +3,13 @@ package com.example.demo.models;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class EmployeeProjects implements Serializable {
+public class EmployeeProject implements Serializable {
     private long employeeId;
     private long projectId;
     private LocalDate fromDate;
     private LocalDate toDate;
 
-    public EmployeeProjects (long employeeId, long projectId, LocalDate fromDate, LocalDate toDate) {
+    public EmployeeProject (long employeeId, long projectId, LocalDate fromDate, LocalDate toDate) {
         this.employeeId = employeeId;
         this.projectId = projectId;
         this.fromDate = fromDate;
