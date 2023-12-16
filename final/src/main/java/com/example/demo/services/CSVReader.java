@@ -25,7 +25,7 @@ public class CSVReader implements Reader{
                         } else {
                             employeeProjects.add(new EmployeeProjects(Long.parseLong(values[0]),
                                     Long.parseLong(values[1]), LocalDate.parse(values[2]),
-                                    values[3].isEmpty() ? null : LocalDate.parse(values[3])));
+                                    values[3].isEmpty() || values[3].equals("NULL") ? null : LocalDate.parse(values[3])));
                         }
                     } else {
                         br.readLine();
