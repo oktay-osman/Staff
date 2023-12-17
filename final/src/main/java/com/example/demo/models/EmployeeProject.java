@@ -47,4 +47,14 @@ public class EmployeeProject implements Serializable {
     public void setToDate (LocalDate toDate) {
         this.toDate = toDate;
     }
+
+    @Override
+    public String toString () {
+        return "EmployeeProject{" +
+                "employeeId=" + employeeId +
+                ", projectId=" + projectId +
+                ", fromDate=" + fromDate +
+                ", toDate=" + toDate +
+                '}';
+    }
 }
