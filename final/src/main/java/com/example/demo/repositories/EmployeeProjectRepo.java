@@ -5,6 +5,7 @@ import com.example.demo.services.CSVReader;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Repository
@@ -22,8 +23,8 @@ public class EmployeeProjectRepo {
         jdbcTemplate.update(sql, emp.getEmployeeId(), emp.getProjectId(), emp.getFromDate(), emp.getToDate());
     }
 
-    public List<EmployeeProject> getAllEmployeeProjects() {
+    public List<? extends Serializable> getAllEmployeeProjects() {
         //TODO fix path and create run configuration
-        return (List<EmployeeProject>) reader.read("C:\\Users\\my\\IdeaProjects\\Staff\\Staff\\final\\src\\main\\resources\\static\\employee_projects.csv");
+        return reader.read("C:\\Users\\my\\IdeaProjects\\Staff\\Staff\\final\\src\\main\\resources\\static\\employee_projects.csv");
     }
 }
