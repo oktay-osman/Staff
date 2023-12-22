@@ -1,9 +1,8 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.EmployeeProject;
 import com.example.demo.services.EmployeeProjectService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/emp-projects")
 public class EmployeeProjectController {
-    private EmployeeProjectService employeeProjectService;
+    private final EmployeeProjectService employeeProjectService;
 
     public EmployeeProjectController (EmployeeProjectService employeeProjectService) {
         this.employeeProjectService = employeeProjectService;
@@ -20,4 +19,18 @@ public class EmployeeProjectController {
     public List<? extends Serializable> getEmpProjects() {
         return employeeProjectService.getAllEmployeeProjects();
     }
+
+    @PostMapping("/add-emp-project")
+    public String addEmpProject (@RequestBody Serializable empProject) {
+        try {
+            if(empProject instanceof EmployeeProject) {
+                employeeProjectService.addEmployeeProject((EmployeeProject) empProject);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return "Successfully added Employee-project info.";
+    }
+
+
 }
