@@ -13,14 +13,19 @@ public class EmployeeProjectRepo {
     private JdbcTemplate jdbcTemplate;
     private CSVReader reader = new CSVReader();
 
+    private String filePath = "static/employee_projects.csv";
+
     public EmployeeProjectRepo (JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void addEmployeeProject(EmployeeProject emp) {
-        String sql = "INSERT INTO employee_projects (employee_id, project_id, from_date, to_date) " +
-                "VALUES (?, ?, ? ,?)";
-        jdbcTemplate.update(sql, emp.getEmployeeId(), emp.getProjectId(), emp.getFromDate(), emp.getToDate());
+    public void addEmployeeProject(Serializable emp) {
+        if(emp instanceof EmployeeProject) {
+            String sql = "INSERT INTO employee_projects (employee_id, project_id, from_date, to_date) " +
+                    "VALUES (?,?,?,?)";
+            jdbcTemplate.update(sql, ((EmployeeProject) emp).getEmployeeId(), ((EmployeeProject) emp).getProjectId(),
+                    ((EmployeeProject) emp).getFromDate(), ((EmployeeProject) emp).getToDate());
+        }
     }
 
     public List<? extends Serializable> getAllEmployeeProjects() {
