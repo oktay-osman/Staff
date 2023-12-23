@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class EmployeeProjectService {
-    private EmployeeProjectRepo employeeProjectRepo;
+    private final EmployeeProjectRepo employeeProjectRepo;
 
     public EmployeeProjectService (EmployeeProjectRepo employeeProjectRepo) {
         this.employeeProjectRepo = employeeProjectRepo;
@@ -21,5 +21,9 @@ public class EmployeeProjectService {
 
     public List<? extends Serializable> getAllEmployeeProjects() {
         return employeeProjectRepo.getAllEmployeeProjects();
+    }
+
+    public void addRecordsToDB () {
+        employeeProjectRepo.addRecordsToDB();
     }
 }

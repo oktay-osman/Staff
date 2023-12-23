@@ -32,4 +32,20 @@ public class EmployeeProjectRepo {
         //TODO fix path and create run configuration
         return reader.read("C:\\Users\\my\\IdeaProjects\\Staff\\Staff\\final\\src\\main\\resources\\static\\employee_projects.csv");
     }
+
+   public void addRecordsToDB () {
+        String sql = "INSERT INTO employee_projects (employee_id, project_id, from_date,to_date)" +
+                "VALUES (?,?,?,?)";
+        List<? extends Serializable> empProjects = getAllEmployeeProjects();
+        try {
+            for (Serializable emp : empProjects) {
+                if(emp instanceof EmployeeProject) {
+                    jdbcTemplate.update(sql, ((EmployeeProject) emp).getEmployeeId(), ((EmployeeProject) emp).getProjectId(),
+                            ((EmployeeProject) emp).getFromDate(), ((EmployeeProject) emp).getToDate());
+                }
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+   }
 }

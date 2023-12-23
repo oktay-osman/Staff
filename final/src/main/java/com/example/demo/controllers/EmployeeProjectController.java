@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.models.EmployeeProject;
 import com.example.demo.services.EmployeeProjectService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
@@ -32,5 +33,13 @@ public class EmployeeProjectController {
         return "Successfully added Employee-project info.";
     }
 
+    @PostConstruct
+    public void addRecordsToDB() {
+        try {
+            employeeProjectService.addRecordsToDB();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
