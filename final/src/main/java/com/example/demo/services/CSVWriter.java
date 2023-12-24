@@ -11,10 +11,10 @@ public class CSVWriter implements Writer{
     @Override
     public void write (List<? extends Serializable> items, String filePath) {
         try(FileWriter writer = new FileWriter(filePath)) {
-
+            writer.write("EmployeeID, ProjectID, DateFrom, DateTo\n");
             for (Serializable obj: items) {
                 if(obj instanceof EmployeeProject) {
-                    writer.write(obj.toString());
+                    writer.append(((EmployeeProject) obj).toStringCSVFormat()).append("\n");
                 }
             }
         } catch (IOException e) {
