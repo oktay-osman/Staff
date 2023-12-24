@@ -9,6 +9,9 @@ public class EmployeeProject implements Serializable {
     private LocalDate fromDate;
     private LocalDate toDate;
 
+    public EmployeeProject () {
+    }
+
     public EmployeeProject (long employeeId, long projectId, LocalDate fromDate, LocalDate toDate) {
         this.employeeId = employeeId;
         this.projectId = projectId;
@@ -56,5 +59,9 @@ public class EmployeeProject implements Serializable {
                 ", fromDate=" + fromDate +
                 ", toDate=" + toDate +
                 '}';
+    }
+
+    public String toStringCSVFormat() {
+        return employeeId + ", " + projectId + ", " + fromDate + ", " + toDate;
     }
 }
