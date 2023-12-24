@@ -26,4 +26,12 @@ public class EmployeeProjectService {
     public void addRecordsToDB () {
         employeeProjectRepo.addRecordsToDB();
     }
+
+    public StringBuilder getOverlappingDays() {
+        return employeeProjectRepo.executeOverlappingDays();
+    }
+
+    public void saveRecordsToCSV() {
+        employeeProjectRepo.saveRecordsToCSV();
+    }
 }

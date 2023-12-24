@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import com.example.demo.models.EmployeeProject;
 import com.example.demo.services.EmployeeProjectService;
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
@@ -40,6 +41,16 @@ public class EmployeeProjectController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @GetMapping("/get-overlapping")
+    public StringBuilder getOverlappingDays (){
+        return employeeProjectService.getOverlappingDays();
+    }
+
+    @PreDestroy
+    public void addRecordsToCSV() {
+        employeeProjectService.saveRecordsToCSV();
     }
 
 }
